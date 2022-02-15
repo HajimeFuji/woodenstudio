@@ -1179,7 +1179,10 @@ li {
 }
 @media screen and (max-width:599px) {
   .eachProduct-imginfo {
+    margin-bottom: 32px;
     display: block;
+    -moz-column-gap: initial;
+         column-gap: initial;
   }
 }
 .eachProduct__img {
@@ -1300,7 +1303,6 @@ li {
 }
 @media screen and (max-width:599px) {
   .eachProduct-content__text {
-    margin-bottom: 32px;
     font-size: 12px;
     line-height: 1.8;
   }
@@ -1337,15 +1339,14 @@ li {
   background-size: cover;
   width: 50%;
   height: calc((100vw - 160px) / 2 / 6 * 7.7);
-  aspect-ratio: 603/270;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 @media screen and (max-width:599px) {
   .contactForm__img {
-    width: 100%;
     height: 50vh;
+    width: 100%;
   }
 }
 .contactForm .section-headline {
