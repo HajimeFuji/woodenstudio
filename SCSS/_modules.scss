@@ -1,0 +1,113 @@
+@use "variables" as *;
+
+.section-headline {
+    &__sub {
+        color: $sub;
+        font-weight: bold;
+        margin-bottom: 8px;
+    }
+
+    &__main {
+        color: $main;
+        font-weight: bold;
+    }
+}
+
+.sns-link {
+    display: flex;
+    // ※親要素にかける
+    // column-gap: 10px; 
+    &__icon {
+        background-color: $white;
+        color: $black;
+    // 親要素の背景に子要素のアイコンを中央に配置する
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        height: 32px;
+        width: 32px;
+        border-radius: 50%;
+        margin-right: 10px;
+        &:last-child {
+            margin-right: 0;
+        }
+        
+        &--primary {
+            background-color: $main;
+            color: $white;
+        }
+    }
+}
+
+.color-circle {
+    border-radius: 50%;
+    height: 32px;
+    width: 32px;
+
+    &--green {
+        background-color: $green;
+    }
+
+    &--blue {
+        background-color: $blue;
+    }
+
+    &--brown {
+        background-color: $brown;
+    }
+}
+
+.btn {
+    border: 1px solid $main;
+    color: $main;
+    display: block;
+    font-size: 14px;
+    font-weight: bold;
+    font-family: $sans;
+    height: 48px;
+    width: 216px;
+    line-height: 48px;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+    // ホバーアクション 動き 　※元の要素に対して設定
+    transition: all .8s ease;
+    // ホバーアクション
+    &:hover{
+        background-color: $main;
+        border: none;
+        color: $white;
+    }
+
+    &::after {
+        content: "";
+        border: 1px solid $main;
+        height: 48px;
+        width: 216px;
+        position: absolute;
+        // 親要素の position: relative に対して子要素の位置を指定
+        top: 4px;
+        left: 4px;
+        z-index: 0;
+    }
+
+    // 疑似要素へのホバー
+    &:hover::after{
+        top: 0;
+        left: 0;
+    }
+
+    &--primary {
+        background-color: $main;
+        color: $white;
+
+        // 疑似要素へのホバー
+        &:hover{
+            background-color: transparent;
+            border: none;
+            color: $main;
+        }
+    }
+}
+
