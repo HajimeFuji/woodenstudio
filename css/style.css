@@ -725,6 +725,30 @@ li {
   margin-top: 60px;
 }
 
+.page-wrap.active {
+  background-color: #00001a;
+}
+
+.light {
+  color: #FFFFFF;
+}
+
+.concept1-wrap.bgLight {
+  z-index: 0;
+}
+
+.btn.btnDark {
+  border: 1px solid #FFFFFF;
+  color: #FFFFFF;
+}
+.btn.btnDark:hover {
+  background-color: #323232;
+  color: #FFFFFF;
+}
+.btn.btnDark::after {
+  border: 1px solid #FFFFFF;
+}
+
 .page-wrap {
   display: flex;
 }
@@ -866,6 +890,7 @@ li {
   top: 0;
   right: 0;
   width: 50%;
+  z-index: 1;
 }
 @media screen and (max-width:599px) {
   .concept1__img {
@@ -1466,5 +1491,24 @@ li {
   top: initial;
   left: initial;
   margin: 0 auto;
+}
+
+.alert-wrap {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.alert-message {
+  color: #FF0000;
+  font-size: 14px;
+}
+
+.message {
+  color: #6E551B;
+  font-family: "Noto sans JP";
+  font-size: 14px;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 32px;
 }
 /*# sourceMappingURL=style.css.map */

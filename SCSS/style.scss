@@ -6,6 +6,7 @@
 @use "modules";
 @use "common";
 @use "drawer";
+@use "darkmode";
 
 .page-wrap {
     display: flex;
@@ -162,6 +163,7 @@
             top: 0;
             right: 0;
             width: 50%;
+            z-index: 1;
             @include mq(sp){
                 position: initial;
                 width: 100%;
@@ -786,4 +788,23 @@
             }
         }
     }
+}
+
+.alert-wrap {
+    text-align: center;
+    margin-bottom: 32px;
+}
+
+.alert-message {
+    color: $red;
+    font-size: 14px;
+}
+
+.message {
+    color: $main;
+    font-family: $sans;
+    font-size: 14px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 32px;
 }

@@ -1,0 +1,28 @@
+@use "variables" as *;
+
+.page-wrap.active {
+    background-color: #00001a;
+}
+
+.light {
+    color: $white;
+}
+
+.concept1-wrap.bgLight {
+    // background-color: red;
+    z-index: 0;
+}
+
+.btn.btnDark {
+    border: 1px solid $white;
+    color: $white;
+
+    &:hover{
+        background-color: $black;
+        color: $white;
+    }
+    &::after {
+        border: 1px solid $white;
+    }
+
+}

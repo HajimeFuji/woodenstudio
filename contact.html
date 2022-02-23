@@ -4,7 +4,7 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>WOODEN STUDIO</title>
+        <title>WOODEN STUDIO_contact</title>
     
         <!-- webフォント -->
         <link rel="stylesheet" href="https://use.typekit.net/zij1yya.css">
@@ -34,116 +34,131 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/drawer/3.2.2/js/drawer.min.js"></script>
     
         <script src="./js/common.js"></script>
+
+        <!-- import vue.js -->
+        <script src="https://unpkg.com/vue@next"></script>
+
     </head>
 <body class="drawer drawer--right">
-    <div class="page-wrap">
-        <header>
-            <div class="sp-header">
-                <h1>
-                    <a href="index.html"><img src="./img/woodenStudio_logo.png" alt="" class="sp-header__logo"></a>
-                </h1>
-                <div class="hamburger drawer-toggle drawer-hamburger">
-                    <span class="drawer-hamburger-icon"></span>
+    <div id="app">
+        <div class="page-wrap" :class="{active: classDark}">
+            <header>
+                <div class="sp-header">
+                    <h1>
+                        <a href="index.html"><img src="./img/woodenStudio_logo.png" alt="" class="sp-header__logo"></a>
+                    </h1>
+                    <div class="hamburger drawer-toggle drawer-hamburger">
+                        <span class="drawer-hamburger-icon"></span>
+                    </div>
+                    <nav class="drawer-nav" role="navigation">
+                        <ul class="drawer-menu">
+                            <li><a class="drawer-menu-item" href="index.html#products">Products</a></li>
+                            <li><a class="drawer-menu-item" href="index.html#recommend">Recommend</a></li>
+                            <li><a class="drawer-menu-item" href="index.html#concept">Concept</a></li>
+                            <li><a class="drawer-menu-item" href="index.html#news">News</a></li>
+                            <li><a class="drawer-menu-item" href="contact.html">Contact</a></li>
+                        </ul>
+                        <div class="sns-link">
+                            <a href="" class="sns-link__icon sns-link__icon--primary"><i class="fab fa-instagram"></i></a>
+                            <a href="" class="sns-link__icon sns-link__icon--primary"><i class="fab fa-twitter"></i></a>
+                            <a href="" class="sns-link__icon sns-link__icon--primary"><i class="fab fa-facebook-f"></i></a>
+                        </div>
+                    </nav>
                 </div>
-                <nav class="drawer-nav" role="navigation">
-                    <ul class="drawer-menu">
-                        <li><a class="drawer-menu-item" href="index.html#products">Products</a></li>
-                        <li><a class="drawer-menu-item" href="index.html#recommend">Recommend</a></li>
-                        <li><a class="drawer-menu-item" href="index.html#concept">Concept</a></li>
-                        <li><a class="drawer-menu-item" href="index.html#news">News</a></li>
-                        <li><a class="drawer-menu-item" href="contact.html">Contact</a></li>
-                    </ul>
+            </header>
+            <main>
+                <section>
+                    <div class="contactForm">
+                        <div class="contactForm-wrap">
+                            <div class="contactForm__img">
+                                <div class="section-headline">
+                                    <span class="section-headline__sub">お問い合わせ</span>
+                                    <h2 class="section-headline__main">Contact</h2>
+                                </div>
+                            </div>
+                        <!-- <div class="contactForm-wrap"> -->
+                            <div class="contactForm-content">
+                                <p class="contactForm-content__text" :class="{light: classDark}">
+                                    お問い合わせありがとうございます。<br>
+                                    以下のフォームよりオーダーメイドのご依頼又は<br>
+                                    お問い合わせ内容を入力して送信して下さい。
+                                </p>
+
+                                <div class="alert-wrap" v-if="alert || phoneCheck">
+                                    <p v-if="alert" class="alert-message">必須項目に未入力があります。</p>
+                                    <p v-if="phoneCheck" class="alert-message">電話番号は11桁で入力してください。</p>
+                                </div>
+                                <p v-if="failCheck" class="message" :class="{light: classDark}">メッセージは送信されました。</p>
+
+                                <div class="Form-wrap">
+                                    <form action="index.html" @submit.prevent="onSubmit">
+                                        <div class="Form-Item">
+                                            <p class="Form-Item-Label" :class="{light: classDark}">お名前<span class="Form-Item-Label__sub">*</span></p>
+                                            <input type="text" class="Form-Item-Input" v-model="name">
+                                        </div>
+                                        <div class="Form-Item">
+                                            <p class="Form-Item-Label" :class="{light: classDark}">ふりがな<span class="Form-Item-Label__sub">*</span></p>
+                                            <input type="text" class="Form-Item-Input" v-model="kana">
+                                        </div>
+                                        <div class="Form-Item">
+                                            <p class="Form-Item-Label" :class="{light: classDark}">電話番号<span class="Form-Item-Label__sub">*</span></p>
+                                            <input type="text" class="Form-Item-Input" v-model="tel">
+                                        </div>
+                                        <div class="Form-Item">
+                                            <p class="Form-Item-Label" :class="{light: classDark}">メールアドレス<span class="Form-Item-Label__sub">*</span></p>
+                                            <input type="text" class="Form-Item-Input" v-model="mail">
+                                        </div>
+                                        <div class="Form-Item">
+                                            <p class="Form-Item-Label" :class="{light: classDark}">郵便番号<span class="Form-Item-Label__sub">*</span></p>
+                                            <input type="text" class="Form-Item-Input" v-model="post">
+                                        </div>
+                                        <div class="Form-Item">
+                                            <p class="Form-Item-Label" :class="{light: classDark}">住所<span class="Form-Item-Label__sub">*</span></p>
+                                            <input type="text" class="Form-Item-Input" v-model="address">
+                                        </div>
+                                        <div class="Form-Item">
+                                            <p class="Form-Item-Label" :class="{light: classDark}">件名<span class="Form-Item-Label__sub">*</span></p>
+                                            <input type="text" class="Form-Item-Input" v-model="caseNo">
+                                        </div>
+                                        <div class="Form-Item">
+                                            <p class="Form-Item-Label-isMsg" :class="{light: classDark}">お問い合わせ内容<span class="Form-Item-Label__sub">*</span></p>
+                                            <textarea class="Form-Item-Textarea" v-model="content"></textarea>
+                                        </div>
+                                        <div class="form-button">
+                                            <button type="submit" class="btn  btn--primary" :class="{btnDark: classDark}">送信</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </main>
+            <header>
+                <div class="header">
+                    <h1 class="header__logo">
+                        <a href="index.html"><img src="./img/woodenStudio_logo.png" alt="WOODEN STUDIOのロゴ"></a>
+                    </h1>
+                    <nav>
+                        <ul class="header-nav">
+                            <li v-if="iconChange" @click="toggleDark" class="header-nav__link"><i class="fas fa-moon"></i></li>
+                            <li v-else @click="toggleDark" class="header-nav__link"><i class="fas fa-sun"></i></li>
+                            <!-- (li.header-nav__link>a)*5 -->
+                            <li class="header-nav__link"><a href="index.html#products">Products</a></li>
+                            <li class="header-nav__link"><a href="index.html#recommend">Recommend</a></li>
+                            <li class="header-nav__link"><a href="index.html#concept">Concept</a></li>
+                            <li class="header-nav__link"><a href="index.html#news">News</a></li>
+                            <li class="header-nav__link"><a href="contact.html">Contact</a></li>
+                        </ul>
+                    </nav>
                     <div class="sns-link">
                         <a href="" class="sns-link__icon sns-link__icon--primary"><i class="fab fa-instagram"></i></a>
                         <a href="" class="sns-link__icon sns-link__icon--primary"><i class="fab fa-twitter"></i></a>
                         <a href="" class="sns-link__icon sns-link__icon--primary"><i class="fab fa-facebook-f"></i></a>
                     </div>
-                </nav>
-            </div>
-        </header>
-        <main>
-            <section>
-                <div class="contactForm">
-                    <div class="contactForm-wrap">
-                        <div class="contactForm__img">
-                            <div class="section-headline">
-                                <span class="section-headline__sub">お問い合わせ</span>
-                                <h2 class="section-headline__main">Contact</h2>
-                            </div>
-                        </div>
-                    <!-- <div class="contactForm-wrap"> -->
-                        <div class="contactForm-content">
-                            <p class="contactForm-content__text">
-                                お問い合わせありがとうございます。<br>
-                                以下のフォームよりオーダーメイドのご依頼又は<br>
-                                お問い合わせ内容を入力して送信して下さい。
-                            </p>
-                            <div class="Form-wrap">
-                                <form action="index.html">
-                                    <div class="Form-Item">
-                                        <p class="Form-Item-Label">お名前<span class="Form-Item-Label__sub">*</span></p>
-                                        <input type="text" class="Form-Item-Input">
-                                    </div>
-                                    <div class="Form-Item">
-                                        <p class="Form-Item-Label">ふりがな<span class="Form-Item-Label__sub">*</span></p>
-                                        <input type="text" class="Form-Item-Input">
-                                    </div>
-                                    <div class="Form-Item">
-                                        <p class="Form-Item-Label">電話番号<span class="Form-Item-Label__sub">*</span></p>
-                                        <input type="text" class="Form-Item-Input">
-                                    </div>
-                                    <div class="Form-Item">
-                                        <p class="Form-Item-Label">メールアドレス<span class="Form-Item-Label__sub">*</span></p>
-                                        <input type="email" class="Form-Item-Input">
-                                    </div>
-                                    <div class="Form-Item">
-                                        <p class="Form-Item-Label">郵便番号<span class="Form-Item-Label__sub">*</span></p>
-                                        <input type="email" class="Form-Item-Input">
-                                    </div>
-                                    <div class="Form-Item">
-                                        <p class="Form-Item-Label">住所<span class="Form-Item-Label__sub">*</span></p>
-                                        <input type="email" class="Form-Item-Input">
-                                    </div>
-                                    <div class="Form-Item">
-                                        <p class="Form-Item-Label">件名<span class="Form-Item-Label__sub">*</span></p>
-                                        <input type="email" class="Form-Item-Input">
-                                    </div>
-                                    <div class="Form-Item">
-                                        <p class="Form-Item-Label-isMsg">お問い合わせ内容<span class="Form-Item-Label__sub">*</span></p>
-                                        <textarea class="Form-Item-Textarea"></textarea>
-                                    </div>
-                                    <div class="form-button">
-                                        <button type="submit" class="btn  btn--primary" value="送信">送信</button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
                 </div>
-            </section>
-        </main>
-        <header>
-            <div class="header">
-                <h1 class="header__logo">
-                    <a href="index.html"><img src="./img/woodenStudio_logo.png" alt="WOODEN STUDIOのロゴ"></a>
-                </h1>
-                <nav>
-                    <ul class="header-nav">
-                        <!-- (li.header-nav__link>a)*5 -->
-                        <li class="header-nav__link"><a href="index.html#products">Products</a></li>
-                        <li class="header-nav__link"><a href="index.html#recommend">Recommend</a></li>
-                        <li class="header-nav__link"><a href="index.html#concept">Concept</a></li>
-                        <li class="header-nav__link"><a href="index.html#news">News</a></li>
-                        <li class="header-nav__link"><a href="contact.html">Contact</a></li>
-                    </ul>
-                </nav>
-                <div class="sns-link">
-                    <a href="" class="sns-link__icon sns-link__icon--primary"><i class="fab fa-instagram"></i></a>
-                    <a href="" class="sns-link__icon sns-link__icon--primary"><i class="fab fa-twitter"></i></a>
-                    <a href="" class="sns-link__icon sns-link__icon--primary"><i class="fab fa-facebook-f"></i></a>
-                </div>
-            </div>
-        </header>
+            </header>
+        </div>
     </div>
     <footer>
         <div class="footer">
@@ -177,5 +192,8 @@
             </div>
         </div>
     </footer>
+
+    <script src="./js/main.js"></script>
+
 </body>
 </html>

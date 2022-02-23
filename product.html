@@ -4,7 +4,7 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>WOODEN STUDIO</title>
+        <title>WOODEN STUDIO_product</title>
     
         <!-- webフォント -->
         <link rel="stylesheet" href="https://use.typekit.net/zij1yya.css">
@@ -34,97 +34,103 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/drawer/3.2.2/js/drawer.min.js"></script>
     
         <script src="./js/common.js"></script>
+        
+        <!-- import vue.js -->
+        <script src="https://unpkg.com/vue@next"></script>
+
     </head>
 <body class="drawer drawer--right">
-    <div class="page-wrap">
-        <header>
-            <div class="sp-header">
-                <h1>
-                    <a href="index.html"><img src="./img/woodenStudio_logo.png" alt="" class="sp-header__logo"></a>
-                </h1>
-                <div class="hamburger drawer-toggle drawer-hamburger">
-                    <span class="drawer-hamburger-icon"></span>
+    <div id="app">
+        <div class="page-wrap" :class="{active: classDark}">
+            <header>
+                <div class="sp-header">
+                    <h1>
+                        <a href="index.html"><img src="./img/woodenStudio_logo.png" alt="" class="sp-header__logo"></a>
+                    </h1>
+                    <div class="hamburger drawer-toggle drawer-hamburger">
+                        <span class="drawer-hamburger-icon"></span>
+                    </div>
+                    <nav class="drawer-nav" role="navigation">
+                        <ul class="drawer-menu">
+                            <li><a class="drawer-menu-item" href="index.html#products">Products</a></li>
+                            <li><a class="drawer-menu-item" href="index.html#recommend">Recommend</a></li>
+                            <li><a class="drawer-menu-item" href="index.html#concept">Concept</a></li>
+                            <li><a class="drawer-menu-item" href="index.html#news">News</a></li>
+                            <li><a class="drawer-menu-item" href="contact.html">Contact</a></li>
+                        </ul>
+                        <div class="sns-link">
+                            <a href="" class="sns-link__icon sns-link__icon--primary"><i class="fab fa-instagram"></i></a>
+                            <a href="" class="sns-link__icon sns-link__icon--primary"><i class="fab fa-twitter"></i></a>
+                            <a href="" class="sns-link__icon sns-link__icon--primary"><i class="fab fa-facebook-f"></i></a>
+                        </div>
+                    </nav>
                 </div>
-                <nav class="drawer-nav" role="navigation">
-                    <ul class="drawer-menu">
-                        <li><a class="drawer-menu-item" href="index.html#products">Products</a></li>
-                        <li><a class="drawer-menu-item" href="index.html#recommend">Recommend</a></li>
-                        <li><a class="drawer-menu-item" href="index.html#concept">Concept</a></li>
-                        <li><a class="drawer-menu-item" href="index.html#news">News</a></li>
-                        <li><a class="drawer-menu-item" href="contact.html">Contact</a></li>
-                    </ul>
+            </header>
+
+            <main>
+                <article>
+                    <div class="eachProduct">
+                        <div class="eachProduct-wrap">
+                            <div class="eachProduct-imginfo">
+                                <img :src="image" alt="" class="eachProduct__img">
+                                <div class="eachProduct-content">
+                                    <span class="eachProduct-content__code" :class="{light: classDark}">{{ id }}</span>
+                                    <h4 class="eachProduct-content__title" :class="{light: classDark}">{{ product }}</h4>
+                                    <span class="eachProduct-content__price" :class="{light: classDark}">￥330,000<span class="eachProduct-content__price-sub">(税込)</span></span>
+                                    <div class="eachProduct-content__spec">
+                                        <div class="eachProduct-color">
+                                            <p class="eachProduct-color-p">カラー</p>
+                                            <div class="eachProduct-color-link">
+                                                <div class="color-circle color-circle--green" @click="toggleGreen"></div>
+                                                <div class="color-circle color-circle--blue" @click="toggleBlue"></div>
+                                                <div class="color-circle color-circle--brown" @click="toggleBrown"></div>
+                                            </div>
+                                        </div>
+                                        <p class="eachProduct-content__size" :class="{light: classDark}">サイズ　幅192 × 奥行80 × 高さ90 cm</p>
+                                    </div>
+                                    <div class="bottom-line"></div>
+                                    <p class="eachProduct-content__text" :class="{light: classDark}">創業当初から愛され続けている当店自慢の2シーターソファです。<br>
+                                        木そのままの素材を生かした無垢材を使用し、あなたの生活と共に味わい深い<br class="mobile-none">
+                                        表情へと変化していきます。<br class="mobile-none">
+                                        クッション素材には天然のラテックスフォームを使用しているので、座り心地<br class="mobile-none">
+                                        が快適で通気性にも優れています。<br class="mobile-none">
+                                        木の温もりとふかふかのクッションであなたを憩いの空間へと誘います。
+                                    </p>
+
+                                </div>
+                            </div>
+                            <a href="contact.html" class="btn  btn--primary" :class="{btnDark: classDark}">お問い合わせ</a>                       
+                        </div>
+                    </div>
+                </article>
+            </main>
+            <header>
+                <div class="header">
+                    <h1 class="header__logo">
+                        <a href="index.html"><img src="./img/woodenStudio_logo.png" alt="WOODEN STUDIOのロゴ"></a>
+                    </h1>
+                    <nav>
+                        <ul class="header-nav">
+                            <li v-if="iconChange" @click="toggleDark" class="header-nav__link"><i class="fas fa-moon"></i></li>
+                            <li v-else @click="toggleDark" class="header-nav__link"><i class="fas fa-sun"></i></li>
+                            <!-- (li.header-nav__link>a)*5 -->
+                            <li class="header-nav__link"><a href="index.html#products">Products</a></li>
+                            <li class="header-nav__link"><a href="index.html#recommend">Recommend</a></li>
+                            <li class="header-nav__link"><a href="index.html#concept">Concept</a></li>
+                            <li class="header-nav__link"><a href="index.html#news">News</a></li>
+                            <li class="header-nav__link"><a href="contact.html">Contact</a></li>
+                        </ul>
+                    </nav>
                     <div class="sns-link">
                         <a href="" class="sns-link__icon sns-link__icon--primary"><i class="fab fa-instagram"></i></a>
                         <a href="" class="sns-link__icon sns-link__icon--primary"><i class="fab fa-twitter"></i></a>
                         <a href="" class="sns-link__icon sns-link__icon--primary"><i class="fab fa-facebook-f"></i></a>
                     </div>
-                </nav>
-            </div>
-        </header>
-
-        <main>
-            <article>
-                <div class="eachProduct">
-                    <div class="eachProduct-wrap">
-                        <div class="eachProduct-imginfo">
-                            <img src="./img/photo06.jpg" alt="" class="eachProduct__img">
-                            <div class="eachProduct-content">
-                                <span class="eachProduct-content__code">WS-SF101-FG</span>
-                                <h4 class="eachProduct-content__title">ソファ二人掛け</h4>
-                                <span class="eachProduct-content__price">￥330,000<span class="eachProduct-content__price-sub">(税込)</span></span>
-                                <div class="eachProduct-content__spec">
-                                    <div class="eachProduct-color">
-                                        <p class="eachProduct-color-p">カラー</p>
-                                        <div class="eachProduct-color-link">
-                                            <!-- <a href="" class="eachProduct-color-link__icon"><i class=""></i></a>
-                                            <a href="" class="eachProduct-color-link__icon"><i class=""></i></a>
-                                            <a href="" class="eachProduct-color-link__icon"><i class=""></i></a> -->
-                                            <a href="" class="color-circle color-circle--green"><i class=""></i></a>
-                                            <a href="" class="color-circle color-circle--blue"><i class=""></i></a>
-                                            <a href="" class="color-circle color-circle--brown"><i class=""></i></a>
-                                        </div>
-                                    </div>
-                                    <p class="eachProduct-content__size">サイズ　幅192 × 奥行80 × 高さ90 cm</p>
-                                </div>
-                                <div class="bottom-line"></div>
-                                <p class="eachProduct-content__text">創業当初から愛され続けている当店自慢の2シーターソファです。<br>
-                                    木そのままの素材を生かした無垢材を使用し、あなたの生活と共に味わい深い<br class="mobile-none">
-                                    表情へと変化していきます。<br class="mobile-none">
-                                    クッション素材には天然のラテックスフォームを使用しているので、座り心地<br class="mobile-none">
-                                    が快適で通気性にも優れています。<br class="mobile-none">
-                                    木の温もりとふかふかのクッションであなたを憩いの空間へと誘います。
-                                </p>
-
-                            </div>
-                        </div>
-                        <a href="contact.html" class="btn  btn--primary">お問い合わせ</a>                       
-                    </div>
                 </div>
-            </article>
-        </main>
-        <header>
-            <div class="header">
-                <h1 class="header__logo">
-                    <a href="index.html"><img src="./img/woodenStudio_logo.png" alt="WOODEN STUDIOのロゴ"></a>
-                </h1>
-                <nav>
-                    <ul class="header-nav">
-                        <!-- (li.header-nav__link>a)*5 -->
-                        <li class="header-nav__link"><a href="index.html#products">Products</a></li>
-                        <li class="header-nav__link"><a href="index.html#recommend">Recommend</a></li>
-                        <li class="header-nav__link"><a href="index.html#concept">Concept</a></li>
-                        <li class="header-nav__link"><a href="index.html#news">News</a></li>
-                        <li class="header-nav__link"><a href="contact.html">Contact</a></li>
-                    </ul>
-                </nav>
-                <div class="sns-link">
-                    <a href="" class="sns-link__icon sns-link__icon--primary"><i class="fab fa-instagram"></i></a>
-                    <a href="" class="sns-link__icon sns-link__icon--primary"><i class="fab fa-twitter"></i></a>
-                    <a href="" class="sns-link__icon sns-link__icon--primary"><i class="fab fa-facebook-f"></i></a>
-                </div>
-            </div>
-        </header>
+            </header>
+        </div>
     </div>
+
     <footer>
         <div class="footer">
             <h1 class="footer__logo">WOODEN STUDIO</h1>
@@ -157,5 +163,8 @@
             </div>
         </div>
     </footer>
+
+    <script src="./js/main.js"></script>
+
 </body>
 </html>
